@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // base: "kinotoaster",
+  base: "/kinotoaster/",
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })
