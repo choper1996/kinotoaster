@@ -6,7 +6,9 @@ function App() {
 
   return (
     <div>
-      <img style={{ width: "20rem" }} src="/logo.svg" alt="kinotoaster" />
+      <div style={{ padding: "2rem" }}>
+        <img style={{ width: "100%" }} src="/logo.svg" alt="kinotoaster" />
+      </div>
       <Grid items={IMAGES}  />
     </div>
   )
