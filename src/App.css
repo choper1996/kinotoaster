@@ -1,0 +1,109 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color:  #F9F9F9;
+}
+
+.grid {
+  /* дефолты — если JS не передал значения, всё равно работает */
+  --grid-min-width: 12.5rem;
+  --grid-gap: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-width), 1fr));
+  gap: var(--grid-gap);
+}
+
+.grid-item {
+  position: relative;
+  /* соотношение 5:7 — высота считается автоматически */
+  aspect-ratio: 5 / 7;
+  overflow: hidden;
+  background: #000;
+  cursor: default;
+}
+
+.grid-item[role='button'] {
+  cursor: pointer;
+}
+
+.grid-item__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  object-fit: cover;
+  display: block;
+  transform: translate(-50%, -50%);
+  backface-visibility: hidden;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.grid-item__overlay {
+  position: absolute;
+  inset: -1px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 1.15rem 1.2rem;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.grid-item__title {
+  margin: 0;
+  color: #fff;
+  /*letter-spacing: 0.03em;*/
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(120%);
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+  /*font-family: "LINE Seed JP", sans-serif;*/
+  font-family: "Oswald", sans-serif;
+  /*font-family: "Alumni Sans Pinstripe", sans-serif;*/
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  /*font-variation-settings:*/
+  /*        "slnt" 0,*/
+  /*        "FLAR" 0,*/
+  /*        "VOLM" 0;*/
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.grid-item:hover .grid-item__img,
+.grid-item:focus-visible .grid-item__img {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.grid-item:hover .grid-item__overlay,
+.grid-item:focus-visible .grid-item__overlay {
+  opacity: 1;
+}
+
+.grid-item:hover .grid-item__title,
+.grid-item:focus-visible .grid-item__title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-item__img,
+  .grid-item__overlay,
+  .grid-item__title {
+    transition: none;
+  }
+
+  .grid-item:hover .grid-item__img,
+  .grid-item:focus-visible .grid-item__img {
+    transform: translate(-50%, -50%);
+  }
+}
